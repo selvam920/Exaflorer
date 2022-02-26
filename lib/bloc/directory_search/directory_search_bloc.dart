@@ -4,21 +4,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DirectorySearchBloc
     extends Bloc<DirectorySearchEvent, DirectorySearchState> {
-  DirectorySearchBloc() : super(DSinitialState());
+  DirectorySearchBloc() : super(DSinitialState()) {
+    on<DirectorySearchEvent>(
+        (event, emit) => mapEventToState(event).listen((state) {
+              emit(state);
+            }));
+  }
 
   Stream<DirectorySearchState> mapEventToState(
       DirectorySearchEvent event) async* {
     yield DSinitialState();
 
-    if( event is OnTyping) {
+    if (event is OnTyping) {
       yield DSloading();
 
-      Stream<String> dirPaths = DirectoryEntityFacade.searchDE(event.path, event.keyword);
+      Stream<String> dirPaths =
+          DirectoryEntityFacade.searchDE(event.path, event.keyword);
 
-      await for(String path in dirPaths) {
+      await for (String path in dirPaths) {
         yield DSFounded(path);
       }
-
     }
 
     yield DSDone();

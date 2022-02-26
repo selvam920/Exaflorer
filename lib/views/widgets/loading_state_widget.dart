@@ -12,8 +12,8 @@ class LoadingStateWidget extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           Container(
-            child: Text('Memuat...'),
-            margin: EdgeInsets.only(top: 10),
+            child: Text('Loading..'),
+            margin: EdgeInsets.only(top: 20),
           )
         ],
       ),

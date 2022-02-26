@@ -16,7 +16,7 @@ class StorageFacade {
     if (storages.length == 0) return [];
 
     _storages.add(StorageModel(
-      name: 'Memori Internal',
+      name: 'Internal Memory',
       icon: Icons.phone_iphone,
       fullpath: storages[0].parent.parent.parent.parent.path,
       storageInfo: storages[0],
@@ -25,27 +25,17 @@ class StorageFacade {
       freeSpace: coreProvider.freeSpace, // in bytes
     ));
 
-    // if (storages.length >= 2) {
-    //   _storages.add(StorageModel(
-    //     name: 'Kartu SD',
-    //     storageInfo: storages[1],
-    //     icon: Icons.sd_card_outlined,
-    //     fullpath: storages[1].parent.parent.parent.parent.path,
-    //     totalSpace: coreProvider.totalSDSpace, // in bytes
-    //     usedSpace: coreProvider.usedSDSpace, // in bytes
-    //     freeSpace: coreProvider.freeSDSpace, // in bytes
-    //   ));
-    // }
-
-    if (storages.length >= 3) {
+    for (int i = 1; i < storages.length; i++) {
+      var storage = storages[i];
+      String name = storage.path.split("/")[2];
       _storages.add(StorageModel(
-        name: '??',
-        storageInfo: storages[2],
-        icon: Icons.storage_rounded,
-        fullpath: storages[2].parent.parent.parent.parent.path,
-        totalSpace: 0, // in bytes
-        usedSpace: 0, // in bytes
-        freeSpace: 0, // in bytes
+        name: name,
+        storageInfo: storage,
+        icon: Icons.sd_card_outlined,
+        fullpath: storage.parent.parent.parent.parent.path,
+        totalSpace: coreProvider.totalSDSpace, // in bytes
+        usedSpace: coreProvider.usedSDSpace, // in bytes
+        freeSpace: coreProvider.freeSDSpace, // in bytes
       ));
 
       // ...

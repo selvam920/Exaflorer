@@ -11,17 +11,18 @@ class DirectoryPathBloc extends Bloc<DirectoryPathEvent, DirectoryPathState> {
     [''].last,
   );
 
-  DirectoryPathBloc() : super(DirectoryPathBloc.defState);
+  DirectoryPathBloc() : super(DirectoryPathBloc.defState) {
+    on<DirectoryPathEvent>((event, emit) => emit(mapEventToState(event)));
+  }
 
-  @override
-  Stream<DirectoryPathState> mapEventToState(
+  DirectoryPathState mapEventToState(
     DirectoryPathEvent event,
-  ) async* {
+  ) {
     if (event is PopLastPath) {
       if (event.paths.length > 1) {
         event.paths.removeLast();
       }
-      yield DirectoryPathState(
+      return DirectoryPathState(
         event.paths,
         event.paths.first,
         event.paths.last,
@@ -30,22 +31,22 @@ class DirectoryPathBloc extends Bloc<DirectoryPathEvent, DirectoryPathState> {
       if (!event.paths.haveValue(event.newPath)) {
         event.paths.add(event.newPath);
       }
-      yield DirectoryPathState(
+      return DirectoryPathState(
         event.paths,
         event.paths.first,
         event.paths.last,
       );
     } else if (event is RemovePathAfterIndex) {
       List<String> newPaths = event.paths.removeAfter(event.index);
-      yield DirectoryPathState(newPaths, newPaths.first, newPaths.last);
+      return DirectoryPathState(newPaths, newPaths.first, newPaths.last);
     } else if (event is RefreshPath) {
-      yield DirectoryPathState(
+      return DirectoryPathState(
         event.paths,
         event.paths.first,
         event.paths.last,
       );
     } else {
-      yield DirectoryPathBloc.defState;
+      return DirectoryPathBloc.defState;
     }
   }
 

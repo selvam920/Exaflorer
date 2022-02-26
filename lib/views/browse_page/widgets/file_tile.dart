@@ -30,7 +30,7 @@ class FileTile extends DirectoryEntityWidget {
             ),
             title: title(file.name),
             subtitle: subTitle(file.upConvert() + " : ${file.mode}"),
-            trailing: trailing(context),
+            // trailing: trailing(context),
           ),
         ),
         divider(),

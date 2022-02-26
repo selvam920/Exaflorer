@@ -8,9 +8,13 @@ part 'directory_action_state.dart';
 
 class DirectoryActionBloc
     extends Bloc<DirectoryActionEvent, DirectoryActionState> {
-  DirectoryActionBloc() : super(InitialState());
+  DirectoryActionBloc() : super(InitialState()) {
+    on<DirectoryActionEvent>(
+        (event, emit) => mapEventToState(event).listen((state) {
+              emit(state);
+            }));
+  }
 
-  @override
   Stream<DirectoryActionState> mapEventToState(
       DirectoryActionEvent event) async* {
     yield LoadingState();

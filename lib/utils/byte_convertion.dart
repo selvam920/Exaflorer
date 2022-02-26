@@ -1,4 +1,4 @@
-import 'package:units_converter/DigitalData.dart';
+import 'package:units_converter/units_converter.dart';
 
 /// ByteConvertion merupakan class yang
 /// menyediakan metode/fungsi untuk mengubah

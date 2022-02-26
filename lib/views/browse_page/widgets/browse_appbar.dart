@@ -63,7 +63,7 @@ class _AppBarDef extends StatelessWidget {
             title: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Text(
-                "Jelajah Direktori",
+                "Select Drive",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -80,30 +80,17 @@ class _AppBarDef extends StatelessWidget {
     BuildContext context,
     DirectoryPathState pathState,
   ) {
-    List<Map<String, dynamic>> _actions = [
-      {
-        'tooltip': 'Cari file atau folder',
-        'icon': Icons.search_outlined,
-        'onTap': () {},
-      },
-      {
-        'tooltip': 'Urutkan direktori',
-        'icon': Icons.sort,
-        'onTap': () {},
-      },
-    ];
-
     List<Widget> widgets = [];
 
-    for (var action in _actions) {
-      widgets.add(Tooltip(
-        message: action['tooltip'],
-        child: IconButton(
-          icon: Icon(action['icon'] as IconData),
-          onPressed: () {},
-        ),
-      ));
-    }
+    // for (var action in _actions) {
+    //   widgets.add(Tooltip(
+    //     message: action['tooltip'],
+    //     child: IconButton(
+    //       icon: Icon(action['icon'] as IconData),
+    //       onPressed: () {},
+    //     ),
+    //   ));
+    // }
 
     widgets.add(
       PopupMenuButton<int>(
@@ -111,10 +98,8 @@ class _AppBarDef extends StatelessWidget {
         tooltip: "Tampilkan menu",
         onSelected: (int i) {
           if (i == 0) {
-            pText('Buat Folder Baru : ');
             _showCreateFolderDialog(context, pathState);
           } else if (i == 1) {
-            pText('Buat File Baru : ');
             _showCreateFileDialog(context, pathState);
             // ...
           }
@@ -123,12 +108,12 @@ class _AppBarDef extends StatelessWidget {
           _buildMenuItem(
             value: 0,
             icon: Icons.create_new_folder_outlined,
-            name: "folder baru",
+            name: "Create folder",
           ),
           _buildMenuItem(
             value: 1,
             icon: Icons.file_present,
-            name: "file baru",
+            name: "Create file",
           ),
         ],
       ),

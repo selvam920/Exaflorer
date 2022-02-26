@@ -10,7 +10,12 @@ part 'navigationbloc_event.dart';
 part 'navigationbloc_state.dart';
 
 class NavigationBloc extends Bloc<NavigationblocEvent, NavigationblocState> {
-  NavigationBloc() : super(InitialNavigationState());
+  NavigationBloc() : super(InitialNavigationState()) {
+    on<NavigationblocEvent>(
+        (event, emit) => mapEventToState(event).listen((state) {
+              emit(state);
+            }));
+  }
 
   @override
   Stream<NavigationblocState> mapEventToState(

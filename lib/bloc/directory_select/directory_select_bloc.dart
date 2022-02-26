@@ -4,7 +4,12 @@ import 'package:filemanager/bootstrap.dart';
 
 class DirectorySelectBloc
     extends Bloc<DirectorySelectEvent, DirectorySelectState> {
-  DirectorySelectBloc() : super(DirectorySelectInitial());
+  DirectorySelectBloc() : super(DirectorySelectInitial()) {
+    on<DirectorySelectEvent>(
+        (event, emit) => mapEventToState(event).listen((state) {
+              emit(state);
+            }));
+  }
 
   @override
   Stream<DirectorySelectState> mapEventToState(

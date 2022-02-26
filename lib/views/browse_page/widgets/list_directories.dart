@@ -25,7 +25,7 @@ class ListDirectories extends StatelessWidget {
                     context, snapshot.data ?? [], state, stateSelect);
               });
             else if (snapshot.hasError)
-              return ErrorStateWidget("Terjadi kesalahan!!");
+              return ErrorStateWidget("Error Occurred!!");
             else
               return LoadingStateWidget();
           },

@@ -32,7 +32,7 @@ class FolderTile extends DirectoryEntityWidget {
             title: title(folder.name),
             subtitle: subTitle(
                 "${dt.day} ${dt.month}, ${dt.year} - ${dt.hour}:${dt.minute}"),
-            trailing: trailing(context),
+            // trailing: trailing(context),
           ),
         ),
         divider(),

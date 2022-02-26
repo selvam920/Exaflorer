@@ -32,7 +32,7 @@ class StorageCard extends StatelessWidget {
     // Color
     Color progressColor = Colors.orange.shade400;
 
-    if (percentage >= 0.15 && percentage < 0.85){
+    if (percentage >= 0.15 && percentage < 0.85) {
       progressColor = Colors.blue.shade400;
     } else if (percentage >= 0.85) {
       progressColor = Colors.red.shade400;
